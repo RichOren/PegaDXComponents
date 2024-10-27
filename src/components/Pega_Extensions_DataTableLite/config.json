@@ -1,0 +1,49 @@
+{
+  "name": "Pega_Extensions_DataTableLite",
+  "label": "Data Table Lite",
+  "description": "A light Weight Master Detail Data Table",
+  "organization": "Pega",
+  "version": "1.0.0",
+  "library": "Extensions",
+  "allowedApplications": [],
+  "componentKey": "Pega_Extensions_DataTableLite",
+  "type": "Template",
+  "subtype": "FORM",
+  "icon": "TwoColumn.svg",
+  "properties": [
+    {
+      "name": "heading",
+      "label": "Label",
+      "format": "TEXT"
+    },
+    {
+      "name": "dataPage",
+      "label": "Choose Data Page",
+      "format": "TEXT"
+    },
+    {
+      "name": "embedDataPage",
+      "label": "Choose Embedded Data Page",
+      "format": "TEXT"
+    },
+    {
+      "format": "DATAPAGE",
+      "name": "prefill",
+      "label": "Prefill data page",
+      "contextFilterProp": "contextClass",
+      "lookupPathOverride": "viewMetadata.config"
+    },
+    {
+      "format": "TEXT",
+      "name": "paginationSize",
+      "label": "Enter pagination size"
+    },
+    {
+      "name": "A",
+      "label": "Region A",
+      "format": "CONTENTPICKER",
+      "addTypeList": ["Fields", "Views"],
+      "allowCreatingGroup": true
+    }
+  ]
+}
