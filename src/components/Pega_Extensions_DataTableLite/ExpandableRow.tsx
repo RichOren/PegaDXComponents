@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Icon } from '@pega/cosmos-react-core';
 import React, { useState, useMemo, useCallback } from "react";
+import Cell from './CellRenderers/Cell';
 import { DataTableProps, RowProps } from "./DataTableLiteTypes";
 import {
   DataTableWrapper,
@@ -61,7 +62,7 @@ const ExpandableRow = <T,>({
           >
             {column.renderCell
               ? column.renderCell(row[column.accessor])
-              : (row[column.accessor] as React.ReactNode) ?? null}
+              : <Cell getFormattedValue={() => row[column.accessor]} /> ?? null}
           </TableData>
         ))}
       </tr>

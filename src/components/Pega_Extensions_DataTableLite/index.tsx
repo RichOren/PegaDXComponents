@@ -5,6 +5,9 @@ import { DataTable } from "./DataTableLite";
 import { Column } from "./DataTableLiteTypes";
 import { withConfiguration } from '@pega/cosmos-react-core';
 import { getDisbursementEmbeddedData } from './utils';
+import CheckCross from './CellRenderers/CheckCross';
+import { Link, NoValue } from '@pega/cosmos-react-core';
+import linkRenderers from './CellRenderers/Link';
 
 type DataTableProps = {
   heading: string;
@@ -58,19 +61,46 @@ export const PegaExtensionsDataTableLite = (props: DataTableProps) => {
     console.log('Updated Disbursement Table Data:', disbursementTableData);
   }, [disbursementTableData]);
 
-  const columns: Column<any>[] = useMemo(() => {
-    if (disbursementTableData.length === 0) return [];
+const columns: Column<any>[] = useMemo(() => {
+  if (disbursementTableData.length === 0) return [];
 
-    // Get the keys from the first object in the data array
-    const keys = Object.keys(disbursementTableData[0]);
+  // Get the keys from the first object in the data array, excluding "id" and "classID"
+  const keys = Object.keys(disbursementTableData[0]).filter(key => key !== "id" && key !== "classID");
 
-     // Map over the keys to create column definitions
-    return keys.map((key) => ({
+  // Iterate over keys to log key and type of their value
+  keys.forEach(key => {
+    const value = disbursementTableData[0][key];
+    const valueType = typeof value;
+    console.log(`Key: ${key}, Type: ${valueType}`);
+  });
+
+  // Map over the keys to create column definitions with different renderCells
+  return keys.map((key) => {
+    // Determine the renderCell based on key or value type
+    let renderCell: (value: any) => JSX.Element = (value) => <span>{value}</span>;
+
+    // Use specific renderers for different cases
+    if (key.toLowerCase().includes("price") || key.toLowerCase().includes("amount")) {
+      renderCell = (value) => <span>${value.toFixed(2)}</span>; // Example for currency formatting
+    } else if (key.toLowerCase().includes("link") || key.toLowerCase().includes("url")) {
+      renderCell = (value) => linkRenderers.URL({ value }); // Use the imported LinkRenderer for URLs
+    } else if (key.toLowerCase().includes("email")) {
+      renderCell = (value) => linkRenderers.Email({ value }); // Use the imported LinkRenderer for Emails
+    } else if (key.toLowerCase().includes("phone")) {
+      renderCell = (value) => linkRenderers.Phone({ value }); // Use the imported LinkRenderer for Phone numbers
+    } else if (typeof disbursementTableData[0][key] === "boolean") {
+      renderCell = (value) => <CheckCross value={value} />; // Use CheckCross for boolean values
+    }
+
+    // Return the column definition
+    return {
       header: formatHeader(key),
       accessor: key,
+      renderCell,
       width: '200px' // Set a default width for all columns
-    }));
-  }, [disbursementTableData]);
+    };
+  });
+}, [disbursementTableData]);
 
   const renderExpandPane = (row: typeof disbursementTableData[0]) => (
     <div>
