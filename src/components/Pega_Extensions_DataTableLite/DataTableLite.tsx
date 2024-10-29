@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 
@@ -8,21 +7,18 @@ import ExpandableRow from './ExpandableRow';
 import {
   DataTableWrapper,
   DetailsHeader,
-  ExpandButton,
   FilterInput,
   PaginationButton,
   PaginationWrapper,
   Table,
-  TableData,
   TableHead,
 } from "./styles";
 
-import { DataTableProps, RowProps } from "./DataTableLiteTypes";
+import { DataTableProps } from "./DataTableLiteTypes";
 import * as caretDown from '@pega/cosmos-react-core/lib/components/Icon/icons/caret-down.icon';
 import * as caretRight from '@pega/cosmos-react-core/lib/components/Icon/icons/caret-down.icon';
 import * as arrowDown from '@pega/cosmos-react-core/lib/components/Icon/icons/arrow-down.icon';
 import * as arrowUp from '@pega/cosmos-react-core/lib/components/Icon/icons/arrow-up.icon';
-import { margin } from 'polished';
 
 registerIcon(caretDown);
 registerIcon(caretRight);

@@ -1,11 +1,25 @@
-export declare const getDataPageResults: (pConn: any, paramDataPage: string) => Promise<any>;
-export declare const displayDPValues: (dataAsArray: []) => void;
-export declare const getMUISimpleTableRowValues: (dataAsArray: []) => any;
-export declare const getMUICustomerListRowValues: (dataAsArray: []) => any;
-export declare const inspectCaseSummaryAndReturnList: (pConn: any, paramDataPage: string) => Promise<any>;
 export declare const getDisbursementEmbeddedData: (paramPConn: any, paramEmbedName: string) => Promise<{
     [key: string]: any;
 }[] | undefined>;
-export declare const getDisbursementDataAsRowData: (dataPageResults: []) => any;
-export declare const getSelectedRowIndex: (customerTableData: any, rowId: string) => Promise<any>;
+/**
+ * Given the PConnect object of a Template component, retrieve the children
+ * metadata of all regions.
+ * @param {Function} pConnect PConnect of a Template component.
+ */
+export declare function getAllFields(pConnect: () => {
+    (): any;
+    new (): any;
+    getRawMetadata: {
+        (): any;
+        new (): any;
+    };
+    resolveConfigProps: {
+        (arg0: any): any;
+        new (): any;
+    };
+    createComponent: {
+        (arg0: any): any;
+        new (): any;
+    };
+}): any;
 //# sourceMappingURL=utils.d.ts.map

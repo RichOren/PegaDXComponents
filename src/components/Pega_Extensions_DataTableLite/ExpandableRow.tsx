@@ -1,18 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Icon } from '@pega/cosmos-react-core';
-import React, { useState, useMemo, useCallback } from "react";
 import Cell from './CellRenderers/Cell';
-import { DataTableProps, RowProps } from "./DataTableLiteTypes";
+import { RowProps } from "./DataTableLiteTypes";
 import {
-  DataTableWrapper,
-  DetailsHeader,
   ExpandButton,
-  FilterInput,
-  PaginationButton,
-  PaginationWrapper,
-  Table,
   TableData,
-  TableHead,
 } from "./styles";
 
 

@@ -17,21 +17,9 @@
       "format": "TEXT"
     },
     {
-      "name": "dataPage",
-      "label": "Choose Data Page",
-      "format": "TEXT"
-    },
-    {
       "name": "embedDataPage",
       "label": "Choose Embedded Data Page",
       "format": "TEXT"
-    },
-    {
-      "format": "DATAPAGE",
-      "name": "prefill",
-      "label": "Prefill data page",
-      "contextFilterProp": "contextClass",
-      "lookupPathOverride": "viewMetadata.config"
     },
     {
       "format": "TEXT",
@@ -40,10 +28,16 @@
     },
     {
       "name": "A",
-      "label": "Region A",
+      "label": "Inject Embedded Data Here",
       "format": "CONTENTPICKER",
       "addTypeList": ["Fields", "Views"],
       "allowCreatingGroup": true
+    },
+    {
+      "name": "B",
+      "label": "Expanded Table Content",
+      "format": "CONTENTPICKER",
+      "addTypeList": ["Widgets", "Views", "Insights"]
     }
   ]
 }
